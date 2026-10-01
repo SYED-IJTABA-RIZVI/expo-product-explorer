@@ -37,6 +37,9 @@ export default function HomeScreen() {
           <ThemedText type="title" style={styles.title}>
             Welcome to&nbsp;Expo
           </ThemedText>
+          <ThemedText style={{ textAlign: 'center', marginTop: 10 }}>
+            Syed Muhammad Ijtaba Rizvi, roll no: 23i-0112
+          </ThemedText>
         </ThemedView>
 
         <ThemedText type="code" style={styles.code}>
@@ -53,6 +56,13 @@ export default function HomeScreen() {
             title="Fresh start"
             hint={<ThemedText type="code">npm run reset-project</ThemedText>}
           />
+        </ThemedView>
+
+        <ThemedView style={styles.productsContainer}>
+          <ThemedText type="subtitle">Featured Products</ThemedText>
+          <ThemedText>- Product A</ThemedText>
+          <ThemedText>- Product B</ThemedText>
+          <ThemedText>- Product C</ThemedText>
         </ThemedView>
 
         {Platform.OS === 'web' && <WebBadge />}
@@ -94,5 +104,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.three,
     paddingVertical: Spacing.four,
     borderRadius: Spacing.four,
+  },
+  productsContainer: {
+    gap: Spacing.two,
+    alignSelf: 'stretch',
+    paddingHorizontal: Spacing.three,
+    paddingVertical: Spacing.four,
+    borderRadius: Spacing.four,
+    backgroundColor: 'rgba(0,0,0,0.05)',
   },
 });
