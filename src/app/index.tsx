@@ -1,5 +1,5 @@
 import * as Device from 'expo-device';
-import { Platform, StyleSheet, TouchableOpacity } from 'react-native';
+import { Platform, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AnimatedIcon } from '@/components/animated-icon';
@@ -36,51 +36,57 @@ export default function HomeScreen() {
   return (
     <ThemedView style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.heroSection}>
-          <AnimatedIcon />
-          <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
-          </ThemedText>
-          <ThemedText style={{ textAlign: 'center', marginTop: 10 }}>
-            Syed Muhammad Ijtaba Rizvi, roll no: 23i-0112
-          </ThemedText>
-        </ThemedView>
-
-        <ThemedText type="code" style={styles.code}>
-          get started
-        </ThemedText>
-
-        <ThemedView type="backgroundElement" style={styles.stepContainer}>
-          <HintRow
-            title="Try editing"
-            hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
-          />
-          <HintRow title="Dev tools" hint={getDevMenuHint()} />
-          <HintRow
-            title="Fresh start"
-            hint={<ThemedText type="code">npm run reset-project</ThemedText>}
-          />
-        </ThemedView>
-
-        <TouchableOpacity 
-          style={styles.toggleButton} 
-          onPress={() => setShowProducts(!showProducts)}
+        <ScrollView 
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+          style={styles.scrollView}
         >
-          <ThemedText style={styles.buttonText}>
-            {showProducts ? 'Hide Products' : 'Show Products'}
-          </ThemedText>
-        </TouchableOpacity>
-
-        {showProducts && (
-          <ThemedView style={styles.productsContainer}>
-            <ThemedText type="subtitle">Featured Products</ThemedText>
-            <ThemedText>- Product A</ThemedText>
-            <ThemedText>- Product B</ThemedText>
-            <ThemedText>- Product C</ThemedText>
+          <ThemedView style={styles.heroSection}>
+            <AnimatedIcon />
+            <ThemedText type="title" style={styles.title}>
+              Welcome to&nbsp;Expo
+            </ThemedText>
+            <ThemedText style={{ textAlign: 'center', marginTop: 10 }}>
+              Syed Muhammad Ijtaba Rizvi, roll no: 23i-0112
+            </ThemedText>
           </ThemedView>
-        )}
 
-        {Platform.OS === 'web' && <WebBadge />}
+          <ThemedText type="code" style={styles.code}>
+            get started
+          </ThemedText>
+
+          <ThemedView type="backgroundElement" style={styles.stepContainer}>
+            <HintRow
+              title="Try editing"
+              hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
+            />
+            <HintRow title="Dev tools" hint={getDevMenuHint()} />
+            <HintRow
+              title="Fresh start"
+              hint={<ThemedText type="code">npm run reset-project</ThemedText>}
+            />
+          </ThemedView>
+
+          <TouchableOpacity 
+            style={styles.toggleButton} 
+            onPress={() => setShowProducts(!showProducts)}
+          >
+            <ThemedText style={styles.buttonText}>
+              {showProducts ? 'Hide Products' : 'Show Products'}
+            </ThemedText>
+          </TouchableOpacity>
+
+          {showProducts && (
+            <ThemedView style={styles.productsContainer}>
+              <ThemedText type="subtitle">Featured Products</ThemedText>
+              <ThemedText>- Product A</ThemedText>
+              <ThemedText>- Product B</ThemedText>
+              <ThemedText>- Product C</ThemedText>
+            </ThemedView>
+          )}
+
+          {Platform.OS === 'web' && <WebBadge />}
+        </ScrollView>
       </SafeAreaView>
     </ThemedView>
   );
@@ -94,18 +100,26 @@ const styles = StyleSheet.create({
   },
   safeArea: {
     flex: 1,
+    width: '100%',
+    maxWidth: MaxContentWidth,
+  },
+  scrollView: {
+    flex: 1,
+    width: '100%',
+  },
+  scrollContent: {
     paddingHorizontal: Spacing.four,
     alignItems: 'center',
     gap: Spacing.three,
     paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
+    flexGrow: 1,
   },
   heroSection: {
     alignItems: 'center',
     justifyContent: 'center',
-    flex: 1,
     paddingHorizontal: Spacing.four,
     gap: Spacing.four,
+    marginVertical: Spacing.four,
   },
   title: {
     textAlign: 'center',
