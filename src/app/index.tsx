@@ -58,6 +58,13 @@ export default function HomeScreen() {
           />
         </ThemedView>
 
+        <ThemedView style={styles.productsContainer}>
+          <ThemedText type="subtitle">Featured Products</ThemedText>
+          <ThemedText>- Product A</ThemedText>
+          <ThemedText>- Product B</ThemedText>
+          <ThemedText>- Product C</ThemedText>
+        </ThemedView>
+
         {Platform.OS === 'web' && <WebBadge />}
       </SafeAreaView>
     </ThemedView>
@@ -97,5 +104,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.three,
     paddingVertical: Spacing.four,
     borderRadius: Spacing.four,
+  },
+  productsContainer: {
+    gap: Spacing.two,
+    alignSelf: 'stretch',
+    paddingHorizontal: Spacing.three,
+    paddingVertical: Spacing.four,
+    borderRadius: Spacing.four,
+    backgroundColor: 'rgba(0,0,0,0.05)',
   },
 });
