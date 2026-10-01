@@ -47,7 +47,7 @@ export default function HomeScreen() {
               Welcome to&nbsp;Expo
             </ThemedText>
             <ThemedText style={{ textAlign: 'center', marginTop: 10 }}>
-              Syed Muhammad Ijtaba Rizvi, roll no: 23i-0112
+              Syed Muhammad Ijtaba Rizvi 23i-0112
             </ThemedText>
           </ThemedView>
 
