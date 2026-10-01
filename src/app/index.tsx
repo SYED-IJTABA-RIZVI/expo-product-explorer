@@ -1,5 +1,5 @@
 import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AnimatedIcon } from '@/components/animated-icon';
@@ -28,7 +28,11 @@ function getDevMenuHint() {
   );
 }
 
+import { useState } from 'react';
+
 export default function HomeScreen() {
+  const [showProducts, setShowProducts] = useState(false);
+
   return (
     <ThemedView style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
@@ -58,12 +62,23 @@ export default function HomeScreen() {
           />
         </ThemedView>
 
-        <ThemedView style={styles.productsContainer}>
-          <ThemedText type="subtitle">Featured Products</ThemedText>
-          <ThemedText>- Product A</ThemedText>
-          <ThemedText>- Product B</ThemedText>
-          <ThemedText>- Product C</ThemedText>
-        </ThemedView>
+        <TouchableOpacity 
+          style={styles.toggleButton} 
+          onPress={() => setShowProducts(!showProducts)}
+        >
+          <ThemedText style={styles.buttonText}>
+            {showProducts ? 'Hide Products' : 'Show Products'}
+          </ThemedText>
+        </TouchableOpacity>
+
+        {showProducts && (
+          <ThemedView style={styles.productsContainer}>
+            <ThemedText type="subtitle">Featured Products</ThemedText>
+            <ThemedText>- Product A</ThemedText>
+            <ThemedText>- Product B</ThemedText>
+            <ThemedText>- Product C</ThemedText>
+          </ThemedView>
+        )}
 
         {Platform.OS === 'web' && <WebBadge />}
       </SafeAreaView>
@@ -112,5 +127,17 @@ const styles = StyleSheet.create({
     paddingVertical: Spacing.four,
     borderRadius: Spacing.four,
     backgroundColor: 'rgba(0,0,0,0.05)',
+  },
+  toggleButton: {
+    backgroundColor: '#007AFF',
+    padding: Spacing.three,
+    borderRadius: Spacing.two,
+    alignSelf: 'center',
+    marginVertical: Spacing.two,
+  },
+  buttonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
